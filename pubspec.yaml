@@ -1,0 +1,56 @@
+name: golf
+description: TVM Golf.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+dependencies:
+  flutter_localizations:
+    sdk: flutter
+  flutter:
+    sdk: flutter
+
+  json_annotation: ^4.0.1
+  equatable: ^2.0.3
+  intl: ^0.17.0
+  fluttertoast: ^8.0.6
+  i18n_extension: ^4.0.3
+  cupertino_icons: ^1.0.2
+  shared_preferences: ^2.0.13
+  font_awesome_flutter: ^9.0.0
+  flutter_svg: ^0.22.0
+  flutter_bloc: ^8.0.1
+  flutter_modular: ^3.1.1
+  dio: ^4.0.4
+  flutter_form_builder: ^6.0.0
+  sizer: ^2.0.15
+  cached_network_image: ^3.2.0
+  flutter_spinkit: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.4
+  build_runner: ^2.1.7
+  json_serializable: ^6.1.4
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    -
+  fonts:
+    - family: SF
+    - fonts:
+      - asset: assets/fonts/SF-Pro-Text-Thin.otf
+        weight: 300
+      - asset: assets/fonts/SF-Pro-Text-Regular.otf
+        weight: 400
+      - asset: assets/fonts/SF-Pro-Text-Medium.otf
+        weight: 500
+      - asset: assets/fonts/SF-Pro-Text-Semibold.otf
+        weight: 600
+      - asset: assets/fonts/SF-Pro-Text-Bold.otf
+        weight: 700
