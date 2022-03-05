@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:golf/resources/default.i18n.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../themes/styles.dart';
@@ -26,7 +27,7 @@ class _RegisterViewState extends State<RegisterView> {
               SizedBox(height: 5.h),
               Center(child: Image.asset('assets/images/logo.png', height: 35.h)),
               SizedBox(
-                height: 4.h,
+                height: 5.h,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,39 +58,40 @@ class _RegisterViewState extends State<RegisterView> {
                           validator: FormBuilderValidators.required(context, errorText: "This field cannot be empty"),
                           style: TextStyle(fontSize: 2.25.h, color: AppColor.regularText),
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 5.w, right: 3.w, top: 2.h, bottom: 2.h),
-                            border: OutlineInputBorder(
+                              contentPadding: EdgeInsets.only(left: 5.w, right: 3.w, top: 2.h, bottom: 2.h),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFCECECE),
+                                    width: 1,
+                                  )),
+                              enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide: BorderSide(
                                   color: Color(0xFFCECECE),
                                   width: 1,
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                color: Color(0xFFCECECE),
-                                width: 1,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                color: Color(0xFFCECECE),
-                                width: 1,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: Color(0xFFCECECE),
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            alignLabelWithHint: false,
-                            labelStyle: TextStyle(
-                              fontSize: 2.25.h,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            hintText: "First Name"
-                          ),
+                              alignLabelWithHint: false,
+                              labelStyle: TextStyle(
+                                fontSize: 2.25.h,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              hintText: "First Name"),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(width: 4.w,),
+                  SizedBox(
+                    width: 4.w,
+                  ),
                   Container(
                     width: 45.w,
                     child: Column(
@@ -141,8 +143,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 fontSize: 2.25.h,
                                 fontWeight: FontWeight.w500,
                               ),
-                              hintText: "Last Name"
-                          ),
+                              hintText: "Last Name"),
                         )
                       ],
                     ),
@@ -150,7 +151,7 @@ class _RegisterViewState extends State<RegisterView> {
                   SizedBox(width: 3.w),
                 ],
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 5.h),
               SizedBox(
                 width: 94.w,
                 child: Column(
@@ -181,11 +182,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ]),
                       style: TextStyle(fontSize: 2.25.h, color: AppColor.regularText),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(
-                            left: 5.w,
-                            right: 3.w,
-                            top: 2.h,
-                            bottom: 2.h),
+                        contentPadding: EdgeInsets.only(left: 5.w, right: 3.w, top: 2.h, bottom: 2.h),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide(
@@ -218,6 +215,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ],
                 ),
               ),
+              SizedBox(height: 3.h),
               SizedBox(
                 width: 94.w,
                 child: Column(
@@ -252,11 +250,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ]),
                       style: TextStyle(fontSize: 2.25.h, color: AppColor.regularText),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(
-                            left: 5.w,
-                            right: 3.w,
-                            top: 2.h,
-                            bottom: 2.h),
+                        contentPadding: EdgeInsets.only(left: 5.w, right: 3.w, top: 2.h, bottom: 2.h),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                           borderSide: BorderSide(
@@ -289,15 +283,12 @@ class _RegisterViewState extends State<RegisterView> {
                   ],
                 ),
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 3.h),
               SizedBox(
                 width: 94.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 2.h,
-                    ),
                     Row(
                       children: [
                         RichText(
@@ -319,8 +310,9 @@ class _RegisterViewState extends State<RegisterView> {
                     FormBuilderTextField(
                       name: "password",
                       validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(context, errorText: "This field cannot be empty"),
-                        FormBuilderValidators.email(context, errorText: "Please enter the correct format"),
+                        FormBuilderValidators.required(context, errorText: "This field cannot be empty".i18n),
+                        FormBuilderValidators.minLength(
+                            context, 8, errorText: "Use 8 characters or more for your password".i18n)
                       ]),
                       style: TextStyle(fontSize: 2.25.h, color: AppColor.regularText),
                       decoration: InputDecoration(
@@ -355,24 +347,25 @@ class _RegisterViewState extends State<RegisterView> {
                           fontSize: 2.25.h,
                           fontWeight: FontWeight.w500,
                         ),
-                        hintText: "Enter your password",
+                        hintText: "Enter password".i18n,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 4.h,
-              ),
+              SizedBox(height: 5.h),
               RaisedButton(
-                child: Text("Register", style: TextStyle(fontSize: 18),),
-                onPressed: (){},
+                child: Text(
+                  "Register",
+                  style: TextStyle(fontSize: 18),
+                ),
+                onPressed: () => Modular.to.popAndPushNamed(AppModule.home),
                 color: AppColor.themeColor,
                 textColor: Colors.white,
                 padding: EdgeInsets.fromLTRB(17, 12, 17, 12),
               ),
               SizedBox(
-                height: 2.h,
+                height: 3.h,
               ),
               RichText(
                 text: TextSpan(
@@ -382,8 +375,7 @@ class _RegisterViewState extends State<RegisterView> {
                     TextSpan(
                         text: 'Login',
                         style: TextStyle(color: AppColor.themeColor),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => Modular.to.popAndPushNamed(AppModule.login)),
+                        recognizer: TapGestureRecognizer()..onTap = () => Modular.to.popAndPushNamed(AppModule.login)),
                   ],
                 ),
               ),
