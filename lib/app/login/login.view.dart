@@ -1,5 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:golf/app/app.module.dart';
 import 'package:golf/resources/default.i18n.dart';
 import 'package:golf/themes/styles.dart';
 import 'package:sizer/sizer.dart';
@@ -58,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
                         FormBuilderValidators.required(context, errorText: 'This field is required'.i18n),
                       ],
                     ),
-                    decoration: InputDecoration(hintText:'Email'),
+                    decoration: InputDecoration(hintText: 'Email'),
                   ),
                   SizedBox(height: 5.h),
                   FormBuilderTextField(
@@ -70,8 +73,21 @@ class _LoginViewState extends State<LoginView> {
                         FormBuilderValidators.required(context, errorText: 'This field is required'.i18n),
                       ],
                     ),
-                    decoration: InputDecoration(hintText:'Password'),
+                    decoration: InputDecoration(hintText: 'Password'),
                   ),
+                  SizedBox(height: 5.h),
+                  RichText(
+                    text: TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(fontSize: 2.h, color: Colors.black),
+                        children: [
+                          TextSpan(
+                              text: 'Register now!',
+                              style: TextStyle(fontSize: 2.h, color: AppColor.themeColor),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () => Modular.to.popAndPushNamed(AppModule.register))
+                        ]),
+                  )
                 ],
               ),
             ),
