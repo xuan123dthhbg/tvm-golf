@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:golf/app/home/home.module.dart';
 import 'package:golf/app/login/login.view.dart';
 import 'package:golf/app/register/register.view.dart';
 import 'package:golf/app/splash-screen/splash_screen.view.dart';
@@ -17,7 +18,8 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     // ModuleRoute('/home', module: HomeModule(), transition: TransitionType.rightToLeftWithFade),
     ChildRoute(splashScreen, child: (context, args) => SplashScreen()),
-    ChildRoute(login, child: (context, args) => LoginView(), transition: TransitionType.downToUp),
-    ChildRoute(register, child: (context, args) => RegisterView(), transition: TransitionType.leftToRight),
+    ChildRoute(login, child: (context, args) => LoginView()),
+    ChildRoute(register, child: (context, args) => RegisterView(), transition: TransitionType.rightToLeft),
+    ModuleRoute(home, module: HomeModule(), transition: TransitionType.rightToLeftWithFade),
   ];
 }
