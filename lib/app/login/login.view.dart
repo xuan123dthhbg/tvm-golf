@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:golf/app/app.module.dart';
+import 'package:golf/app/components/button/custom.button.dart';
 import 'package:golf/resources/default.i18n.dart';
 import 'package:golf/themes/styles.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../config/application.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -15,6 +20,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +31,7 @@ class _LoginViewState extends State<LoginView> {
             inputDecorationTheme: InputDecorationTheme(
               contentPadding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
               hintStyle: TextStyle(fontWeight: FontWeight.w300, fontSize: 12.sp, color: AppColor.borderColor),
-              errorStyle: TextStyle(fontWeight: FontWeight.w300, fontSize: 12.sp, color: Colors.red),
+              errorStyle: TextStyle(fontWeight: FontWeight.w300, fontSize: 11.sp, color: Colors.red),
               errorBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.red, width: 1, style: BorderStyle.solid),
                 borderRadius: BorderRadius.circular(10),
@@ -46,6 +53,7 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
           child: FormBuilder(
+            key: _fbKey,
             child: Padding(
               padding: EdgeInsets.only(right: 10.w, left: 10.w, top: 8.h),
               child: Column(
@@ -57,8 +65,8 @@ class _LoginViewState extends State<LoginView> {
                     textInputAction: TextInputAction.next,
                     validator: FormBuilderValidators.compose(
                       [
-                        FormBuilderValidators.email(context, errorText: 'Invalid email'.i18n),
-                        FormBuilderValidators.required(context, errorText: 'This field is required'.i18n),
+                        FormBuilderValidators.email(context, errorText: 'Please enter the correct format'.i18n),
+                        FormBuilderValidators.required(context, errorText: 'This field cannot be empty.'.i18n),
                       ],
                     ),
                     decoration: InputDecoration(hintText: 'Email'),
@@ -69,24 +77,39 @@ class _LoginViewState extends State<LoginView> {
                     textInputAction: TextInputAction.next,
                     validator: FormBuilderValidators.compose(
                       [
-                        FormBuilderValidators.email(context, errorText: 'Invalid email'.i18n),
-                        FormBuilderValidators.required(context, errorText: 'This field is required'.i18n),
+                        FormBuilderValidators.required(context, errorText: 'This field cannot be empty.'.i18n),
                       ],
                     ),
                     decoration: InputDecoration(hintText: 'Password'),
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 3.h),
+                  CustomButton(
+                    child: Text("Login".i18n, style: TextStyle(color: Colors.white, fontSize: 13.sp)),
+                    height: 5.h,
+                    width: 35.w,
+                    onPressed: () {
+                      // if (_fbKey.currentState!.saveAndValidate()) {
+                      //   Application.sharePreference.putString("saveAndValidateData", json.encode(_fbKey.currentState!.value));
+                      //   // await _cubit.login(_fbKey.currentState!.value) ?
+                      //   Modular.to.pushReplacementNamed(AppModule.home);
+                      //   // : null;
+                      // }
+                      Modular.to.pushReplacementNamed(AppModule.home);
+                    },
+                    backgroundColor: AppColor.themeColor,
+                  ),
                   RichText(
                     text: TextSpan(
-                        text: "Don't have an account? ",
-                        style: TextStyle(fontSize: 2.h, color: Colors.black),
-                        children: [
-                          TextSpan(
-                              text: 'Register now!',
-                              style: TextStyle(fontSize: 2.h, color: AppColor.themeColor),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => Modular.to.popAndPushNamed(AppModule.register))
-                        ]),
+                      text: "Don't have an account?".i18n,
+                      style: TextStyle(fontSize: 13.sp, color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: ' ${'Register now!'.i18n}',
+                          style: TextStyle(fontSize: 13.sp, color: AppColor.themeColor),
+                          recognizer: TapGestureRecognizer()..onTap = () => Modular.to.pushReplacementNamed(AppModule.register),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
