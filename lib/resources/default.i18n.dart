@@ -20,7 +20,11 @@ extension Localization on String {
           'Password': "Mật khẩu",
           'Enter your Handicap': 'Nhập điểm Handicap của bạn',
           'Please enter the correct format': 'Vui lòng nhập đúng định dạng',
-          'Have had an account yet?': 'Đã có tài khoản?'
+          'Have had an account yet?': 'Đã có tài khoản?',
+          'Discount': 'Khuyến mãi',
+          'Favorite': 'Yêu thích',
+          'Nearest': 'Gần nhất',
+          'Optional': 'Tùy chọn'
         }
       };
 }

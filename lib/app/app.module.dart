@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:golf/app/home/booking/booking.module.dart';
 import 'package:golf/app/home/home.module.dart';
 import 'package:golf/app/login/login.view.dart';
 import 'package:golf/app/register/register.view.dart';

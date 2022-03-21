@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:golf/app/app.module.dart';
 import 'package:golf/app/home/home.cubit.dart';
+import 'package:golf/app/home/home.module.dart';
 import 'package:golf/config/application.dart';
 import 'package:golf/resources/default.i18n.dart';
 import 'package:golf/themes/styles.dart';
@@ -84,6 +87,24 @@ class _HomeState extends State<Home> {
         //     ),
         //   ),
         // ),
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            Modular.to.pushNamed(AppModule.home + HomeModule.booking);
+          },
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: SvgPicture.asset("assets/images/icon/booking.svg", height: 7.w),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Color(0xFFCECECE), width: 3),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xFF00B59C), Color(0xFF19769F)],
+              ),
+            ),
+          ),
+        ),
         bottomNavigationBar: BlocBuilder<HomeCubit, HomeState>(
           buildWhen: (prev, now) => now is HavingNotification,
           bloc: Application.homeCubit,

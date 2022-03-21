@@ -1,10 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:golf/app/home/home.view.dart';
 
+import 'booking/booking.module.dart';
+
 class HomeModule extends Module {
   // static String newsFeed = '/newsFeed';
   // static String extension = '/extension';
-  // static String booking = "/booking";
+  static String booking = "/booking";
   // static String profile = "/profile";
   // static String notification = "/notification";
   // static String messenger = "/messenger";
@@ -18,7 +20,7 @@ class HomeModule extends Module {
   List<ModularRoute> get routes => [
     ChildRoute('/', child: (context, args) => Home()),
     // ModuleRoute(profile, module: ProfileModule()),
-    // ModuleRoute(booking, module: BookingModule()),
+    ModuleRoute(booking, module: BookingModule()),
     // ModuleRoute(newsFeed, module: NewsFeedModule()),
     // ModuleRoute(extension, module: ExtensionModule()),
     // ModuleRoute(notification, module: NotificationModule()),
